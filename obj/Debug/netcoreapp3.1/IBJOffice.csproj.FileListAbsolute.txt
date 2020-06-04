@@ -417,3 +417,4 @@ C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\IBJOffice.cs
 C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\IBJOffice.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\IBJOffice.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\Razor\Views\Employee\_TableData.cshtml.g.cs
+C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\Razor\Views\Employee\_AddForm.cshtml.g.cs
