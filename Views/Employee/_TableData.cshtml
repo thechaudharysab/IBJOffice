@@ -1,0 +1,37 @@
+﻿@{
+    List<Employee> EmployeeList = (List<Employee>)ViewData["EmployeesList"];
+}
+
+@if (EmployeeList.Count > 0)
+{
+    foreach (var employee in EmployeeList)
+    {
+        <tr class="employees-row" style="width: 20%; text-align:center;">
+            <td>@employee.FirstName</td>
+            <td>@employee.LastName</td>
+            <td>@employee.Position</td>
+            <td>@employee.Department</td>
+            <td>@employee.Salary</td>
+            <td>@employee.DateJoined.Date</td>
+            <td>@employee.LastUpdated.Date</td>
+            <td>
+                <button type="button" class="btn btn-sm btn-dark employee-edit" data-id="@employee.EmployeeId">
+                    <span class="spinner-border spinner-border-sm" role="status" style="display:none"></span>
+                </button>
+                <button type="button" class="btn btn-sm btn-danger employee-delete" data-id="@employee.EmployeeId">
+                    <span class="spinner-border spinner-border-sm" role="status" style="display:none"></span>
+                </button>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="10" style="text-align: center">
+            <div>
+                No Records
+            </div>
+        </td>
+    </tr>
+}

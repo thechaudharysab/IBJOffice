@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section scripts {
+    <script src="~/Views/Employee/employee.js"></script>
+}
+
+<div class="module employees" style="padding: 15px">
+
+    <div class="px-2 mt-2" style="padding: 15px; display:flex">
+
+        <input id="keyword" class="form-control-sm" placeholder="Search Keyword" />
+        <button id="search_employee" class="btn btn-sm btn-success w-15 ml-2">
+            <span class="spinner-border spinner-border-sm mr-1" role="status" style="display:none"></span>
+            <i class="fa fa-search mr-1"></i>
+            Search
+        </button>
+        <button type="button" id="add_employeer" data-toggle="modal" class="employee-add btn btn-outline-secondary btn-sm ml-1">Add New Employee</button>
+    </div>
+
+
+    <div class="d-flex flex-row flex-wrap justify-content-center align-items-center" style="margin-bottom: 60px; padding-left: 10px; padding-right: 10px;">
+        <table id="employees_list" class="table table-bordered table-sm table-striped table-bordered" style="padding-left: 25px">
+            <thead>
+                <tr class="theme-secondary" style="background-color: #2b88d8; text-align:center;padding:25px;">
+                    <th style="padding-left: 15px;">First Name</th>
+                    <th>Last Name</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Date Joined</th>
+                    <th>Last Updated</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody style="text-align:center">
+                @*Data coming here from _TableData.cshtml*@
+            </tbody>
+        </table>
+        <div class="employee-form-container" id="employee_form" style="width: 100%; height:100%">
+
+        </div>
+    </div>
+</div>

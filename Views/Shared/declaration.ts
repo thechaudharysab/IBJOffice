@@ -1,0 +1,1 @@
+﻿declare let Util: any; //for util.js
