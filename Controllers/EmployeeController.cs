@@ -31,16 +31,8 @@ namespace IBJOffice.Controllers
             try
             {
                 var data = await _db.Employees.ToListAsync();
-                //Json(new { data = await _db.Employees.ToListAsync() });
-                //Console.WriteLine(data);
-
-                //if (data != null)
-                //{
                     ViewData["EmployeesList"] = data;
                     return PartialView("~/Views/Employee/_TableData.cshtml");
-                //} else {
-                //    return null;
-               // }
             }
             catch (Exception ex)
             {

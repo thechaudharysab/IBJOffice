@@ -28,4 +28,37 @@
     <TypeScriptCompile Include="Views\Employee\employee.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\fonts\font-awesome\4.7\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\animated.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\bordered-pulled.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\core.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\fixed-width.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\font-awesome.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\icons.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\larger.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\list.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\mixins.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\path.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\rotated-flipped.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\screen-reader.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\stacked.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\less\variables.less" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\font-awesome.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_animated.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_core.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_fixed-width.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_icons.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_larger.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_list.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_mixins.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_path.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_screen-reader.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_stacked.scss" />
+    <None Include="wwwroot\fonts\font-awesome\4.7\scss\_variables.scss" />
+  </ItemGroup>
+
 </Project>

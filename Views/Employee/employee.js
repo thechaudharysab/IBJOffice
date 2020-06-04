@@ -22,7 +22,6 @@ var Employees = /** @class */ (function () {
                 $('#employees_list tbody').empty();
                 $('#employees_list tbody').append(response);
             }, function () {
-                //$.notify('Failed to get data. Please try again.');
                 console.error('Failed to get data #T5G354. Please try again');
             });
         }
