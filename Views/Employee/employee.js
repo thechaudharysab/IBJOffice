@@ -1,11 +1,11 @@
 var Employees = /** @class */ (function () {
-    //private urlEditEmployee = '/employee/edit';
     //private urlSearchEmployee = '/employee/search';
     function Employees() {
         this.urlGetData = "/employee/table-data-view";
         this.urlAddEmployee = '/employee/add';
         this.urlSaveEmployee = '/employee/save';
         this.urlDeleteEmployee = '/employee/delete';
+        this.urlEditEmployee = '/employee/edit';
         this.init();
     }
     Employees.prototype.init = function () {
@@ -33,6 +33,13 @@ var Employees = /** @class */ (function () {
                     };
                     _this.delete(data);
                 });
+                $('.employee-edit').click(function (e) {
+                    var id = $(e.currentTarget).data('id');
+                    var data = {
+                        id: id
+                    };
+                    _this.edit(data);
+                });
             }, function () {
                 console.error('Failed to get data #T5G354. Please try again');
             });
@@ -56,11 +63,25 @@ var Employees = /** @class */ (function () {
             console.error(e);
         }
     };
+    Employees.prototype.edit = function (data) {
+        var _this = this;
+        try {
+            Util.request(this.urlEditEmployee, 'get', 'html', function (response) {
+                $('#employee_form').html(response);
+                _this.initForm();
+            }, function () {
+                console.error('Failed to get data #T79G352. Please try again');
+            }, data);
+        }
+        catch (e) {
+            console.error(e);
+        }
+    };
     Employees.prototype.add = function () {
         var _this = this;
         try {
             Util.request(this.urlAddEmployee, 'get', 'html', function (response) {
-                $('#employee_form').html(response).addClass('popup');
+                $('#employee_form').html(response); //.addClass('popup');
                 $('#employee_list').hide(); //.empty().toggleClass('shrink');
                 _this.initForm();
             }), function () {
@@ -87,8 +108,8 @@ var Employees = /** @class */ (function () {
     };
     Employees.prototype.save = function () {
         try {
-            var employee_1 = this.createEmployee();
-            console.log(employee_1);
+            var employee = this.createEmployee();
+            //console.log(employee);
             Util.request(this.urlSaveEmployee, 'post', 'json', function (response) {
                 if (response != null) {
                     $.notify(response.message);
@@ -99,8 +120,7 @@ var Employees = /** @class */ (function () {
                     console.error('Failed to get data #T7G985. Please try again.');
                 }
             }, function () {
-                console.log(employee_1);
-            }, employee_1);
+            }, employee);
         }
         catch (e) {
             console.error(e);

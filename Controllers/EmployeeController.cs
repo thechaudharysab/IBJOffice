@@ -93,5 +93,27 @@ namespace IBJOffice.Controllers
                 return Json(new { success = false, message = "Error while deleting." });
             }
         }    
+
+        [HttpGet("employee/edit")]
+        public async Task<IActionResult> EditEmployee(int id) {
+            try
+            {
+                Employee employee = await _db.Employees.FirstOrDefaultAsync(e => e.EmployeeId == id);
+                if (employee == null)
+                {
+                    return NotFound();
+                }
+
+                ViewData["Title"] = "Edit Employee: " + employee.FirstName + " " + employee.LastName;
+                ViewData["Employee"] = employee;
+                return PartialView("~/Views/Employee/_AddForm.cshtml");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Json(new { success = false, message = "Error while deleting." });
+            }
+        }
+
     }
 }

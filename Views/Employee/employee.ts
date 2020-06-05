@@ -3,7 +3,7 @@
     private urlAddEmployee = '/employee/add';
     private urlSaveEmployee = '/employee/save';
     private urlDeleteEmployee = '/employee/delete';
-    //private urlEditEmployee = '/employee/edit';
+    private urlEditEmployee = '/employee/edit';
     //private urlSearchEmployee = '/employee/search';
 
     constructor() {
@@ -40,6 +40,15 @@
                     this.delete(data);
                 });
 
+                $('.employee-edit').click((e) => {
+                    const id = $(e.currentTarget).data('id');
+                    const data = {
+                        id: id
+                    };
+
+                    this.edit(data);
+                });
+
             }, function () {
                     console.error('Failed to get data #T5G354. Please try again');
             });
@@ -65,10 +74,24 @@
         }
     }
 
+    private edit(data) {
+        try {
+            Util.request(this.urlEditEmployee, 'get', 'html', (response) => {
+                $('#employee_form').html(response)
+
+                this.initForm();
+            }, () => {
+                console.error('Failed to get data #T79G352. Please try again');
+            }, data);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     private add() {
         try {
             Util.request(this.urlAddEmployee, 'get', 'html', (response) => {
-                $('#employee_form').html(response).addClass('popup');
+                $('#employee_form').html(response)//.addClass('popup');
                 $('#employee_list').hide();//.empty().toggleClass('shrink');
 
                 this.initForm();
@@ -101,7 +124,7 @@
         try {
 
             const employee = this.createEmployee();
-            console.log(employee);
+            //console.log(employee);
 
             Util.request(this.urlSaveEmployee, 'post', 'json', (response) => {
                 if (response != null) {
@@ -112,7 +135,6 @@
                     console.error('Failed to get data #T7G985. Please try again.');
                 }
             }, () => {
-                console.log(employee)
             }, employee);
         } catch (e) {
             console.error(e);
