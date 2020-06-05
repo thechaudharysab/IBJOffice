@@ -1,7 +1,6 @@
 ﻿@{ 
     Employee Employee = (Employee)ViewData["Employee"];
     string Title = (string)ViewData["Title"];
-    List<Department> department = new List<Department>();
 }
 
 <div>
@@ -17,30 +16,31 @@
         </thead>
         <tbody>
             <tr>
-                <td style="width: 100px">First Name</td>
+                <td style="width: 100px">First Name*</td>
                 <td>
                     <input class="form-control-sm w-100" id="first_name" value="@Employee.FirstName" autocomplete="off" />
                 </td>
             </tr>
             <tr>
-                <td style="width: 100px">Last Name</td>
+                <td style="width: 100px">Last Name*</td>
                 <td>
                     <input class="form-control-sm w-100" id="last_name" value="@Employee.LastName" autocomplete="off" />
                 </td>
             </tr>
             <tr>
-                <td style="width: 100px">Position</td>
+                <td style="width: 100px">Position*</td>
                 <td>
                     <input class="form-control-sm w-100" id="position" value="@Employee.Position" autocomplete="off" />
                 </td>
             </tr>
             <tr>
-                <td style="width: 100px">Department</td>
+                <td style="width: 100px">Department*</td>
                 <td>
-                    <select class="form-control-sm w-100" id="contractor_service" value="@Employee.Department" maxlength="64" autocomplete="off" list="departments" />
+                    <input class="form-control-sm w-100" id="department" value="@Employee.Department" autocomplete="off" list="departments" />
                     <datalist id="departments">
-                        @foreach(var dept in department) {
-                         <option value="dept">@dept</option>
+                        @foreach (var dept in Enum.GetValues(typeof(Department)))
+                        {
+                            <option value="@dept" />
                         }
                     </datalist>
                 </td>
@@ -54,7 +54,13 @@
             <tr>
                 <td style="width: 100px">Date Joined</td>
                 <td>
-                    <input class="form-control-sm w-100" id="date_joined" value="@Employee.DateJoined" autocomplete="off" />
+                    <input class="form-control-sm w-100" id="date_joined" value="@(Employee.DateJoined == DateTime.MinValue ? DateTime.Now : Employee.DateJoined)" autocomplete="off" />
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 100px">Last Changed</td>
+                <td>
+                    <input class="form-control-sm w-100" id="last_changed" value="@DateTime.Now" readonly="readonly" />
                 </td>
             </tr>
         </tbody>
@@ -64,14 +70,12 @@
 
                     <button type="button" class="btn btn-sm btn-outline-primary employee-form-save" id="save_form">
                         <i class="fa fa-floppy-o" style="margin-right:5px"></i>
-                        <span class="spinner-border spinner-border-sm" role="status"></span>
                         Save
                     </button>
 
                     <button type="button" class="btn btn-sm btn-outline-primary employee-form-close" id="close_form">
-                        <i class="fa fa-backward" style="margin-right:5px"></i>
-                        <span class="spinner-border spinner-border-sm" role="status"></span>
-                        Save
+                        <i class="fa fa-close" style="margin-right:5px"></i>
+                        Close
                     </button>
                 </td>
             </tr>

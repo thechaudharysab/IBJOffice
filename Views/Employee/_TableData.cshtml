@@ -12,14 +12,14 @@
             <td>@employee.Position</td>
             <td>@employee.Department</td>
             <td>@employee.Salary</td>
-            <td>@employee.DateJoined.Date</td>
-            <td>@employee.LastUpdated.Date</td>
+            <td>@employee.DateJoined</td>
+            <td>@employee.LastUpdated</td>
             <td>
                 <button type="button" class="btn btn-sm btn-dark employee-edit" data-id="@employee.EmployeeId">
-                    <span class="spinner-border spinner-border-sm" role="status" style="display:none"></span>
+                    <i class="fa fa-edit"></i>
                 </button>
                 <button type="button" class="btn btn-sm btn-danger employee-delete" data-id="@employee.EmployeeId">
-                    <span class="spinner-border spinner-border-sm" role="status" style="display:none"></span>
+                    <i class="fa fa-trash"></i>
                 </button>
             </td>
         </tr>
