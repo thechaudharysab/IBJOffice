@@ -109,7 +109,6 @@ var Employees = /** @class */ (function () {
     Employees.prototype.save = function () {
         try {
             var employee = this.createEmployee();
-            //console.log(employee);
             Util.request(this.urlSaveEmployee, 'post', 'json', function (response) {
                 if (response != null) {
                     $.notify(response.message);

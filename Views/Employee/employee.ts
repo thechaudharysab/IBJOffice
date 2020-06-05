@@ -124,8 +124,6 @@
         try {
 
             const employee = this.createEmployee();
-            //console.log(employee);
-
             Util.request(this.urlSaveEmployee, 'post', 'json', (response) => {
                 if (response != null) {
                     $.notify(response.message);
