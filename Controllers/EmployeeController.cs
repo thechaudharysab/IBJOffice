@@ -67,7 +67,7 @@ namespace IBJOffice.Controllers
                 if (employeeFromDb == null) {
                         _db.Employees.Add(employee);
                         _db.SaveChanges();
-                        return Json(new { success = true, message = "Saved Successfully" });
+                        return Json(new { success = true, message = "Created Successfully" });
                         } else {
                         employeeFromDb.FirstName = employee.FirstName;
                         employeeFromDb.LastName = employee.LastName;
@@ -79,10 +79,8 @@ namespace IBJOffice.Controllers
                         employeeFromDb.EmployeeId = employee.EmployeeId;
                         _db.Employees.Update(employeeFromDb);
                         _db.SaveChanges();
-                        return Json(new { success = true, message = "Saved Successfully" });
+                        return Json(new { success = true, message = "Updated Successfully" });
                         }
-
-
             }
             catch (Exception ex)
             {
@@ -134,6 +132,174 @@ namespace IBJOffice.Controllers
                 return Json(new { success = false, message = "Error while deleting." });
             }
         }
+
+        [HttpGet("employee/search")]
+        public async Task<IActionResult> SearchEmployee(string keyword) {
+
+            try
+            {
+                //var employees = _db.Employees.Select(e => new Employee(e)).AsQueryable();
+                ////from c in _db.Employees select c;
+
+                var employees = await _db.Employees.Where(e => 
+                e.LastName.ToLower().Contains(keyword.ToLower()) ||
+                e.FirstName.ToLower().Contains(keyword.ToLower()) ||
+                e.Position.ToLower().Contains(keyword.ToLower())
+                ).ToListAsync();
+
+                //Console.WriteLine(employees);
+                ViewData["EmployeesList"] = employees;
+                return PartialView("~/Views/Employee/_TableData.cshtml");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        //public async Task<List<Employee>> GetEmployeesListAsync(EmployeeFilter filter) {
+        //    List<Employee> searchResult = new List<Employee>();
+        //    try
+        //    {
+        //        if (filter == null)
+        //        {
+        //            var target = await _db.Employees.Select(e => new Employee(e)
+        //            {
+        //                EmployeeId = e.EmployeeId,
+        //                FirstName = e.FirstName,
+        //                LastName = e.LastName,
+        //                Position = e.Position,
+        //                Department = e.Department,
+        //                Salary = e.Salary,
+        //                DateJoined = e.DateJoined,
+        //                LastUpdated = e.LastUpdated
+        //            }).AsQueryable().ToListAsync();
+
+        //            searchResult = target;
+        //        }
+        //        else
+        //        {
+        //            var query = _db.Employees.Select(e => new Employee(e)).AsQueryable();
+        //            query = Filter(query, filter);
+
+        //            if (filter.PageSize == 0)
+        //            {
+        //                searchResult = await query.ToListAsync();
+        //            }
+        //            else
+        //            {
+        //                if (filter.PageSize == 0)
+        //                {
+        //                    searchResult = await query.ToListAsync();
+        //                }
+        //                else
+        //                {
+        //                    searchResult = await query.Skip(filter.PageIndex * filter.PageSize).Take(filter.PageSize).ToListAsync();
+        //                }
+        //            }
+        //        }
+
+        //        return searchResult;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        return searchResult;
+        //    }
+        //}
+        //private IQueryable<Employee> Filter(IQueryable<Employee> query, EmployeeFilter filter) {
+        //    try
+        //    {
+        //        if (!string.IsNullOrEmpty(filter.Keyword))
+        //        {
+        //            query = query.Where(e =>
+        //            e.FirstName.ToLower().Contains(filter.Keyword.ToLower()) ||
+        //            e.LastName.ToLower().Contains(filter.Keyword.ToLower()) ||
+        //            e.Position.ToLower().Contains(filter.Keyword.ToLower()) ||
+        //            e.Department.ToString().ToLower().Contains(filter.Keyword.ToLower()) ||
+        //            e.Salary.ToString().ToLower().Contains(filter.Keyword.ToLower())
+        //            );
+        //        } 
+        //        else {
+
+        //            if (!string.IsNullOrEmpty(filter.FirstName))
+        //            {
+        //                if (filter.FirstName[0] == '%')
+        //                {
+        //                    query = query.Where(e => e.FirstName.ToLower().Contains(filter.FirstName.Substring(1).ToLower()));
+        //                }
+        //                else
+        //                {
+        //                    query = query.Where(e => e.FirstName.ToLower() == filter.FirstName.ToLower());
+        //                }
+        //            }
+        //            if (!string.IsNullOrEmpty(filter.LastName))
+        //            {
+        //                if (filter.LastName[0] == '%')
+        //                {
+        //                    query = query.Where(e => e.LastName.ToLower().Contains(filter.LastName.Substring(1).ToLower()));
+        //                }
+        //                else
+        //                {
+        //                    query = query.Where(e => e.LastName.ToLower() == filter.LastName.ToLower());
+        //                }
+        //            }
+        //            if (!string.IsNullOrEmpty(filter.Position))
+        //            {
+        //                if (filter.Position[0] == '%')
+        //                {
+        //                    query = query.Where(e => e.Position.ToLower().Contains(filter.Position.Substring(1).ToLower()));
+        //                }
+        //                else
+        //                {
+        //                    query = query.Where(e => e.Position.ToLower() == filter.Position.ToLower());
+        //                }
+        //            }
+        //            if (!string.IsNullOrEmpty(filter.Department))
+        //            {
+        //                if (filter.Department[0] == '%')
+        //                {
+        //                    query = query.Where(e => e.Department.ToString().ToLower().Contains(filter.Department.Substring(1).ToLower()));
+        //                }
+        //                else
+        //                {
+        //                    query = query.Where(e => e.Department.ToString().ToLower() == filter.Department.ToLower());
+        //                }
+        //            }
+        //            if (!string.IsNullOrEmpty(filter.Salary))
+        //            {
+        //                if (filter.Salary[0] == '%')
+        //                {
+        //                    query = query.Where(e => e.Salary.ToString().ToLower().Contains(filter.Salary.Substring(1).ToLower()));
+        //                }
+        //                else
+        //                {
+        //                    query = query.Where(e => e.Salary.ToString().ToLower() == filter.Salary.ToLower());
+        //                }
+        //            }
+        //        }
+
+        //        //switch (filter.SortBy)
+        //        //{
+        //        //    case: "name":
+        //        //    default:
+        //        //        if (filter.AscSort) { query = query.OrderBy(e => e.EmployeeId); }
+        //        //        else { query = query.OrderByDescending(e => e.EmployeeId); }
+        //        //        break;
+        //        //    case: 
+        //        //}
+
+        //        return query;
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        return query;
+        //    }
+        //}
 
     }
 }

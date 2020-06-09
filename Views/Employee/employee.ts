@@ -4,7 +4,7 @@
     private urlSaveEmployee = '/employee/save';
     private urlDeleteEmployee = '/employee/delete';
     private urlEditEmployee = '/employee/edit';
-    //private urlSearchEmployee = '/employee/search';
+    private urlSearchEmployee = '/employee/search';
 
     constructor() {
         this.init();
@@ -18,6 +18,11 @@
                 this.add();
             });
 
+            $('#search_employee').click(() => {
+                const keyword = $('#keyword').val();
+                this.search(keyword);
+            });
+
         } catch (e) {
             console.error(e);
         }
@@ -28,7 +33,6 @@
             Util.request(this.urlGetData, 'GET', 'html', (response) => {
                 $('#employees_list tbody').empty();
                 $('#employees_list tbody').append(response);
-
 
                 $('.employee-delete').click((e) => {
 
@@ -53,6 +57,28 @@
                     console.error('Failed to get data #T5G354. Please try again');
             });
 
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    private search(keyword) {
+        try {
+            if (keyword === '' || keyword === undefined) {
+                $('employees_list tbody').empty();
+            } else { const data = { keyword: keyword };
+
+                Util.request(this.urlSearchEmployee, 'GET', 'html', (response) => {
+                    const currentKeyWord = $('#keyword').val();
+                    if (currentKeyWord === keyword) {
+                        $('#employees_list tbody').empty();
+                        $('#employees_list tbody').append(response);
+                    }
+                }, function () {
+                        $.notify('Failed to get data. Please try again.');
+                        console.error('Failed to get data #T09576. Please try again.');
+                }, data);
+            }
         } catch (e) {
             console.error(e);
         }

@@ -28,6 +28,5 @@ namespace IBJOffice.Models
 
         public DateTime DateJoined { get; set; }
         public DateTime LastUpdated { get; set; }
-
     }
 }

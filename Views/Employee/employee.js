@@ -1,11 +1,11 @@
 var Employees = /** @class */ (function () {
-    //private urlSearchEmployee = '/employee/search';
     function Employees() {
         this.urlGetData = "/employee/table-data-view";
         this.urlAddEmployee = '/employee/add';
         this.urlSaveEmployee = '/employee/save';
         this.urlDeleteEmployee = '/employee/delete';
         this.urlEditEmployee = '/employee/edit';
+        this.urlSearchEmployee = '/employee/search';
         this.init();
     }
     Employees.prototype.init = function () {
@@ -14,6 +14,10 @@ var Employees = /** @class */ (function () {
             this.initTable();
             $('#add_employee').click(function () {
                 _this.add();
+            });
+            $('#search_employee').click(function () {
+                var keyword = $('#keyword').val();
+                _this.search(keyword);
             });
         }
         catch (e) {
@@ -43,6 +47,29 @@ var Employees = /** @class */ (function () {
             }, function () {
                 console.error('Failed to get data #T5G354. Please try again');
             });
+        }
+        catch (e) {
+            console.error(e);
+        }
+    };
+    Employees.prototype.search = function (keyword) {
+        try {
+            if (keyword === '' || keyword === undefined) {
+                $('employees_list tbody').empty();
+            }
+            else {
+                var data = { keyword: keyword };
+                Util.request(this.urlSearchEmployee, 'GET', 'html', function (response) {
+                    var currentKeyWord = $('#keyword').val();
+                    if (currentKeyWord === keyword) {
+                        $('#employees_list tbody').empty();
+                        $('#employees_list tbody').append(response);
+                    }
+                }, function () {
+                    $.notify('Failed to get data. Please try again.');
+                    console.error('Failed to get data #T09576. Please try again.');
+                }, data);
+            }
         }
         catch (e) {
             console.error(e);
