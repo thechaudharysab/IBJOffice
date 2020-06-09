@@ -15,9 +15,11 @@
             </tr>
         </thead>
         <tbody>
+            
             <tr>
                 <td style="width: 100px">First Name*</td>
                 <td>
+                    <input type="hidden" id="employee_id" value="@Employee.EmployeeId" />
                     <input class="form-control-sm w-100" id="first_name" value="@Employee.FirstName" autocomplete="off" />
                 </td>
             </tr>
@@ -68,9 +70,9 @@
             <tr>
                 <td colspan="2" style="text-align:right">
 
-                    <button type="button" class="btn btn-sm btn-outline-primary employee-form-save" id="save_form" data="@Employee">
+                    <button type="button" class="btn btn-sm btn-outline-primary employee-form-save" id="save_form">
                         <i class="fa fa-floppy-o" style="margin-right:5px"></i>
-                        Save
+                        @(Employee.EmployeeId != 0? "Update" : "Create")
                     </button>
 
                     <button type="button" class="btn btn-sm btn-outline-primary employee-form-close" id="close_form">

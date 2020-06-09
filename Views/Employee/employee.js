@@ -128,6 +128,7 @@ var Employees = /** @class */ (function () {
     Employees.prototype.createEmployee = function () {
         try {
             var employee = {
+                EmployeeId: $('#employee_id').val(),
                 Firstname: $('#first_name').val(),
                 Lastname: $('#last_name').val(),
                 Position: $('#position').val(),

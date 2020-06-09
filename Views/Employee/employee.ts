@@ -143,6 +143,7 @@
         try {
 
             const employee = {
+                EmployeeId: $('#employee_id').val(),
                 Firstname: $('#first_name').val(),
                 Lastname: $('#last_name').val(),
                 Position: $('#position').val(),

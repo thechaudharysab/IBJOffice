@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using IBJOffice.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace IBJOffice.Controllers
 {
@@ -57,12 +59,30 @@ namespace IBJOffice.Controllers
         }
 
         [HttpPost("employee/save")]
-        public IActionResult SaveEmployee(Employee employee) {
+        public async Task<IActionResult> SaveEmployee(Employee employee) {
             try
             {
-                _db.Employees.Add(employee);
-                _db.SaveChanges();
-                return Json(new { success = true, message = "Saved Successfully" });
+                Employee employeeFromDb = await _db.Employees.FirstOrDefaultAsync(e => e.EmployeeId == employee.EmployeeId);
+                
+                if (employeeFromDb == null) {
+                        _db.Employees.Add(employee);
+                        _db.SaveChanges();
+                        return Json(new { success = true, message = "Saved Successfully" });
+                        } else {
+                        employeeFromDb.FirstName = employee.FirstName;
+                        employeeFromDb.LastName = employee.LastName;
+                        employeeFromDb.Position = employee.Position;
+                        employeeFromDb.Department = employee.Department;
+                        employeeFromDb.Salary = employee.Salary;
+                        employeeFromDb.DateJoined = employee.DateJoined;
+                        employeeFromDb.LastUpdated = employee.LastUpdated;
+                        employeeFromDb.EmployeeId = employee.EmployeeId;
+                        _db.Employees.Update(employeeFromDb);
+                        _db.SaveChanges();
+                        return Json(new { success = true, message = "Saved Successfully" });
+                        }
+
+
             }
             catch (Exception ex)
             {
