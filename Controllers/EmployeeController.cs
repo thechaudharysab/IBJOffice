@@ -138,16 +138,12 @@ namespace IBJOffice.Controllers
 
             try
             {
-                //var employees = _db.Employees.Select(e => new Employee(e)).AsQueryable();
-                ////from c in _db.Employees select c;
-
                 var employees = await _db.Employees.Where(e => 
                 e.LastName.ToLower().Contains(keyword.ToLower()) ||
                 e.FirstName.ToLower().Contains(keyword.ToLower()) ||
                 e.Position.ToLower().Contains(keyword.ToLower())
                 ).ToListAsync();
 
-                //Console.WriteLine(employees);
                 ViewData["EmployeesList"] = employees;
                 return PartialView("~/Views/Employee/_TableData.cshtml");
             }

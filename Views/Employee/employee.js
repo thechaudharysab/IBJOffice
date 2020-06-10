@@ -30,18 +30,14 @@ var Employees = /** @class */ (function () {
             Util.request(this.urlGetData, 'GET', 'html', function (response) {
                 $('#employees_list tbody').empty();
                 $('#employees_list tbody').append(response);
-                $('.employee-delete').click(function (e) {
+                $(document).on("click", ".employee-delete", function (e) {
                     var id = $(e.currentTarget).data('id');
-                    var data = {
-                        id: id
-                    };
+                    var data = { id: id };
                     _this.delete(data);
                 });
-                $('.employee-edit').click(function (e) {
+                $(document).on("click", ".employee-edit", function (e) {
                     var id = $(e.currentTarget).data('id');
-                    var data = {
-                        id: id
-                    };
+                    var data = { id: id };
                     _this.edit(data);
                 });
             }, function () {
@@ -54,22 +50,17 @@ var Employees = /** @class */ (function () {
     };
     Employees.prototype.search = function (keyword) {
         try {
-            if (keyword === '' || keyword === undefined) {
-                $('employees_list tbody').empty();
-            }
-            else {
-                var data = { keyword: keyword };
-                Util.request(this.urlSearchEmployee, 'GET', 'html', function (response) {
-                    var currentKeyWord = $('#keyword').val();
-                    if (currentKeyWord === keyword) {
-                        $('#employees_list tbody').empty();
-                        $('#employees_list tbody').append(response);
-                    }
-                }, function () {
-                    $.notify('Failed to get data. Please try again.');
-                    console.error('Failed to get data #T09576. Please try again.');
-                }, data);
-            }
+            var data = { keyword: keyword };
+            Util.request(this.urlSearchEmployee, 'GET', 'html', function (response) {
+                var currentKeyWord = $('#keyword').val();
+                if (currentKeyWord === keyword) {
+                    $('#employees_list tbody').empty();
+                    $('#employees_list tbody').append(response);
+                }
+            }, function () {
+                $.notify('Failed to get data. Please try again.');
+                console.error('Failed to get data #T09576. Please try again.');
+            }, data);
         }
         catch (e) {
             console.error(e);

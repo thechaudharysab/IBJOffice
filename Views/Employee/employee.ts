@@ -34,23 +34,20 @@
                 $('#employees_list tbody').empty();
                 $('#employees_list tbody').append(response);
 
-                $('.employee-delete').click((e) => {
+                $(document).on("click", ".employee-delete", (e) => {
 
                     const id = $(e.currentTarget).data('id');
-                    const data = {
-                        id: id
-                    };
-
+                    const data = { id: id };
                     this.delete(data);
+
                 });
 
-                $('.employee-edit').click((e) => {
-                    const id = $(e.currentTarget).data('id');
-                    const data = {
-                        id: id
-                    };
+                $(document).on("click", ".employee-edit", (e) => {
 
+                    const id = $(e.currentTarget).data('id');
+                    const data = { id: id };
                     this.edit(data);
+
                 });
 
             }, function () {
@@ -64,9 +61,8 @@
 
     private search(keyword) {
         try {
-            if (keyword === '' || keyword === undefined) {
-                $('employees_list tbody').empty();
-            } else { const data = { keyword: keyword };
+
+            const data = { keyword: keyword };
 
                 Util.request(this.urlSearchEmployee, 'GET', 'html', (response) => {
                     const currentKeyWord = $('#keyword').val();
@@ -78,7 +74,6 @@
                         $.notify('Failed to get data. Please try again.');
                         console.error('Failed to get data #T09576. Please try again.');
                 }, data);
-            }
         } catch (e) {
             console.error(e);
         }
