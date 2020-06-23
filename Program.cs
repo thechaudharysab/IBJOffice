@@ -27,7 +27,7 @@ namespace IBJOffice
 
             host.Run();
 
-            //This line below is use in part one of the tutotial
+            //This line below is use in part 1 of the tutotial
             //CreateHostBuilder(args).Build().Run();
         }
 
