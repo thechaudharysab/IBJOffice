@@ -24,8 +24,7 @@ namespace IBJOffice
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
-
-
+            
             host.Run();
 
             //This line below is use in part one of the tutotial

@@ -171,7 +171,6 @@ C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\refs\Microso
 C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.WebSockets.dll
 C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.WebUtilities.dll
 C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\refs\Microsoft.CSharp.dll
-C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Configuration.CommandLine.dll
 C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
 C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Configuration.FileExtensions.dll
 C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\refs\Microsoft.Extensions.Configuration.Ini.dll
@@ -415,3 +414,7 @@ C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\package-lock.json
 C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\Razor\Views\Employee\_TableData.cshtml.g.cs
 C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\Razor\Views\Employee\_AddForm.cshtml.g.cs
+C:\Users\REG-LPT-061\source\repos\IBJOffice\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.CommandLine.dll
+C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\IBJOffice.csproj.CoreCompileInputs.cache
+C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\IBJOffice.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\REG-LPT-061\source\repos\IBJOffice\obj\Debug\netcoreapp3.1\IBJOffice.MvcApplicationPartsAssemblyInfo.cache
