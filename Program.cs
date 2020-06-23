@@ -15,9 +15,16 @@ namespace IBJOffice
     {
         public static void Main(string[] args)
         {
-        //This setting below isused by part 2 of the tutorial
+            //This setting below isused by part 2 of the tutorial
             var config = new ConfigurationBuilder().AddCommandLine(args).Build();
-            var host = new WebHostBuilder().UseKestrel().UseContentRoot(Directory.GetCurrentDirectory()).UseConfiguration(config).UseIISIntegration().UseStartup<Startup>().Build();
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseConfiguration(config)
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+
 
             host.Run();
 
